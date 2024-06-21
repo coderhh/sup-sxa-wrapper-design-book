@@ -2,13 +2,15 @@
 import * as FEAAS from "@sitecore-feaas/clientside/react";
 import { useEffect, useState } from "react";
 
-export default function ExampleClientsideComponent(props: {
+interface ClientsideComponentProps {
   firstName: string;
   lastName?: string;
   telephone?: string;
   bold?: boolean;
   children?: any;
-}) {
+}
+
+export const ExampleClientsideComponent =  (props: ClientsideComponentProps): JSX.Element => {
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
@@ -43,7 +45,7 @@ export default function ExampleClientsideComponent(props: {
       </dl>
     </>
   );
-}
+};
 
 FEAAS.External.registerComponent(ExampleClientsideComponent, {
   name: "clientside-only",

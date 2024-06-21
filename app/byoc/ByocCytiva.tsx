@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import * as FEAAS from '@sitecore-feaas/clientside/react';
 
