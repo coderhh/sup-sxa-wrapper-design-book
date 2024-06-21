@@ -15,8 +15,6 @@ export default (props: any) => {
  * Clientside components are used for user interactivity.
  */
 
-// Clientside-only component
-import "./ExampleClientsideComponent";
 
 // Component that can be rendered both on client and server
 //import "./ExampleHybridComponent";
