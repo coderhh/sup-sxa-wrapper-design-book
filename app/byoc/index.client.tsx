@@ -11,9 +11,20 @@ export default (props: any) => {
 };
 
 /**
- * Add imports to BYOC components that you would like to be rendered on client below.
+ * Add imports to BYOC components that you would like to be rendered on server below.
  * Clientside components are used for user interactivity.
  */
 
 // Clientside-only component
+import "./ExampleClientsideComponent";
+
+// Component that can be rendered both on client and server
+//import "./ExampleHybridComponent";
+
+// Component that has separate implementation for clientside
+//import "./ExampleSwappedComponent.client";
+
+// Serverside component that contains another clientside component
+//import "./ExampleAugmentedComponent";
+
 import "./ByocCytiva";
