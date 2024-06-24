@@ -1,14 +1,14 @@
 import React from 'react';
 import * as FEAAS from '@sitecore-feaas/clientside/react';
 
-interface ByocPromoProps {
+interface CytivaPromoProps {
     imageUrl: string;
     text: string;
     url: string;
     urlText: string;
 }
 
-export const ByocPromo = (props: ByocPromoProps): JSX.Element => {
+export const CytivaPromo = (props: CytivaPromoProps): JSX.Element => {
     return (
       <div className="component promo col-12 link-button">
         <div className="component-content">
@@ -36,10 +36,10 @@ export const ByocPromo = (props: ByocPromoProps): JSX.Element => {
     );
 };
 
-FEAAS.External.registerComponent(ByocPromo, {
-    name: 'ByocPromo',
-    title: 'BYOC Promo',
-    description: 'BYOC Promo',
+FEAAS.External.registerComponent(CytivaPromo, {
+    name: 'CytivaPromo',
+    title: 'Cytiva Promo',
+    description: 'Cytiva Promo',
     thumbnail: 'https://cdn.cytivalifesciences.com.cn/api/public/content/digi-33587-original',
     group: 'Cytiva-Design-Book',
     required: ['text', 'imageUrl', 'url'],

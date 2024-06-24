@@ -25,5 +25,5 @@ export default (props: any) => {
 // Serverside component that contains another clientside component
 //import "./ExampleAugmentedComponent";
 
-import "./ByocCytiva";
-import "./ByocPromo";
+import "./CytivaAdvancedPromo";
+import "./CytivaPromo";

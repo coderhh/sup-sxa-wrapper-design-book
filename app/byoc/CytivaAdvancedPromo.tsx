@@ -1,0 +1,221 @@
+import React from 'react';
+import * as FEAAS from '@sitecore-feaas/clientside/react';
+
+interface CytivaPromoProps {
+  imageUrl: string;
+  text: string;
+  url: string;
+  urlText: string;
+  styling: {
+    basicsite: string;
+    spacing: string[];
+    addhighlight: string[];
+    contentalignment: string;
+    promo: string[];
+    image: string[];
+    common: string[];
+  };
+  advancedstyling: {
+    id: string;
+    cssstyles: string;
+  };
+}
+
+export const CytivaAdvancedPromo = (props: CytivaPromoProps): JSX.Element => {
+  const basicSiteCssClasses = ConvertToCssClasses([props.styling?.basicsite]);
+  const spacingCssClasses = ConvertToCssClasses(props.styling?.spacing);
+  const addHighlightCssClasses = ConvertToCssClasses(props.styling?.addhighlight);
+  const contentAlignmentCssClasses = ConvertToCssClasses([props.styling?.contentalignment]);
+  const promoCssClasses = ConvertToCssClasses(props.styling?.promo);
+  const imageCssClasses = ConvertToCssClasses(props.styling?.image);
+  const commonCssClasses = ConvertToCssClasses(props.styling?.common);
+  return (
+    <div
+      className={`component promo col-12 ${basicSiteCssClasses} ${spacingCssClasses} ${addHighlightCssClasses} ${contentAlignmentCssClasses} ${promoCssClasses} ${imageCssClasses} ${commonCssClasses} ${props.advancedstyling?.cssstyles}`}
+    >
+      <div className="component-content">
+        <div className="field-promoicon">
+          {props.imageUrl && <img alt="Kayee" width="2000" height="1116" src={props.imageUrl} />}
+        </div>
+        <div className="promo-text">
+          <div>
+            <div className="field-promotext">
+              <div>
+                <p>{props.text}</p>
+              </div>
+            </div>
+          </div>
+          {props.url && (
+            <div className="field-promolink">
+              <a href={props.url} title={props.urlText} target="_blank">
+                {props.urlText}
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+FEAAS.External.registerComponent(CytivaAdvancedPromo, {
+  name: 'CytivaAdvancedPromo',
+  title: 'Cytiva Advanced Promo',
+  description: 'Cytiva Advanced Promo description',
+  thumbnail: 'https://cdn.cytivalifesciences.com.cn/api/public/content/digi-33587-original',
+  group: 'Cytiva-Design-Book',
+  properties: {
+    imageUrl: {
+      type: 'string',
+      title: 'Image Url',
+      description:
+        'Please fill in the correct url to the image that should be displayed in the promo',
+    },
+    text: {
+      type: 'string',
+      title: 'Text',
+      description: 'Please fill in the text for the promo',
+    },
+    url: {
+      type: 'string',
+      title: 'Url',
+      description: 'Please fill in the url that the button should navigate to',
+    },
+    urlText: {
+      type: 'string',
+      title: 'Url Text',
+      description: 'Please fill in the text that should be displayed on the button',
+    },
+    styling: {
+      type: 'object',
+      title: 'Styling',
+      properties: {
+        basicsite: {
+          type: 'string',
+          title: 'BASICSITE',
+          enum: ['', 'Main - Promo'],
+        },
+        spacing: {
+          type: 'array',
+          title: 'SPACING',
+          items: {
+            type: 'string',
+            enum: ['', 'Indent Top', 'Indent Bottom', 'Indent Side'],
+          },
+          uniqueItems: true,
+        },
+        addhighlight: {
+          type: 'array',
+          title: 'ADD HIGHLIGHT',
+          items: {
+            type: 'string',
+            enum: [
+              '',
+              'Highlighted left',
+              'Highlighted right',
+              'Highlighted top',
+              'Highlighted bottom',
+            ],
+          },
+          uniqueItems: true,
+        },
+        contentalignment: {
+          type: 'string',
+          title: 'CONTENT ALIGNMENT',
+          enum: ['', 'Align content left', 'Align content center', 'Align content right'],
+        },
+        promo: {
+          type: 'array',
+          title: 'PROMO',
+          items: {
+            type: 'string',
+            enum: ['Promo hero', 'Promo shadow', 'Attach link to bottom'],
+          },
+          uniqueItems: true,
+        },
+        image: {
+          type: 'array',
+          title: 'IMAGE',
+          items: {
+            type: 'string',
+            enum: ['Image default size'],
+          },
+          uniqueItems: true,
+        },
+        common: {
+          type: 'array',
+          title: 'COMMON',
+          items: {
+            type: 'string',
+            enum: ['No borders', 'Button link style'],
+          },
+          uniqueItems: true,
+        },
+      },
+    },
+    advancedstyling: {
+      type: 'object',
+      title: 'Advanced styling',
+      properties: {
+        id: {
+          type: 'string',
+          title: 'ID',
+        },
+        cssstyles: {
+          type: 'string',
+          title: 'CSS STYLES',
+        },
+      },
+    },
+  },
+  ui: {
+    text: {
+      'ui:autofocus': true,
+      'ui:emptyValue': '',
+      'ui:placeholder': 'Write a great Promo text',
+    },
+    styling: {
+      promo: {
+        'ui:widget': 'checkboxes',
+      },
+      image: {
+        'ui:widget': 'checkboxes',
+      },
+      common: {
+        'ui:widget': 'checkboxes',
+      },
+    },
+  },
+});
+
+interface CssClassMapping {
+  [key: string]: string;
+}
+
+function ConvertToCssClasses(input: string[] | undefined) {
+  if (!input) {
+    return '';
+  }
+
+  const classMap: CssClassMapping = {
+    'Main - Promo': 'main-promo-no-border',
+    'Indent Top': 'indent-top',
+    'Indent Bottom': 'indent-bottom',
+    'Indent Side': 'indent',
+    'Highlighted left': 'highlighted-left',
+    'Highlighted right': 'highlighted-right',
+    'Highlighted top': 'highlighted-top',
+    'Highlighted bottom': 'highlighted-bottom',
+    'Align content left': 'position-left',
+    'Align content center': 'position-center',
+    'Align content right': 'position-right',
+    'Promo hero': 'promo-hero',
+    'Promo shadow': 'promo-shadow',
+    'Attach link to bottom': 'absolute-bottom-link',
+    'No borders': 'promoted-box',
+    'Button link style': 'link-button',
+    'Image default size': 'image-default-size',
+  };
+
+  return input.map((className) => classMap[className] || '').join(' ');
+}
