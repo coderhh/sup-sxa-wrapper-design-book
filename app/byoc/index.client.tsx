@@ -27,3 +27,4 @@ export default (props: any) => {
 
 import "./CytivaAdvancedPromo";
 import "./CytivaPromo";
+import "./ByocPromo";
