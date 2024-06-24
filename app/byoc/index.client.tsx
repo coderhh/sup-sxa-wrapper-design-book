@@ -26,3 +26,4 @@ export default (props: any) => {
 //import "./ExampleAugmentedComponent";
 
 import "./ByocCytiva";
+import "./ByocPromo";
